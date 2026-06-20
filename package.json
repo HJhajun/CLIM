@@ -1,0 +1,28 @@
+{
+  "name": "clim",
+  "version": "1.0.0",
+  "description": "CLI Macro",
+  "keywords": [
+    "CLIM",
+    "CLI",
+    "Macro"
+  ],
+  "homepage": "https://github.com/HJhajun/CLIM#readme",
+  "bugs": {
+    "url": "https://github.com/HJhajun/CLIM/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HJhajun/CLIM.git"
+  },
+  "license": "MIT",
+  "author": "HajunKim",
+  "type": "commonjs",
+  "main": "index.js",
+  "bin": {
+    "clim": "./index.js"
+  },
+  "dependencies": {
+    "prompt-sync": "^4.2.0"
+  }
+}

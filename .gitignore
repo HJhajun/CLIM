@@ -1,0 +1,22 @@
+# 종속성 폴더
+node_modules/
+
+# 빌드 출력 폴더 (TypeScript, Webpack 등)
+dist/
+build/
+
+# 환경 변수 및 보안 설정
+.env
+.env.local
+.env.*
+
+# 로그 파일
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# OS 생성 파일 (Mac, Windows)
+.DS_Store
+Thumbs.db
