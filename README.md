@@ -38,7 +38,7 @@ clim list
 - `new` 또는 `n`: 새 매크로 파일 생성
 - `run` 또는 `r`: 저장된 매크로 실행
 - `edit` 또는 `e`: 매크로 파일 편집
-- `delete` 또는 `del` 또는 `rm`: 파일 삭제
+- `delete` 또는 `d`: 파일 삭제
 - `list` 또는 `ls`: 현재 폴더의 파일 목록 보기
 
 ## 예시
@@ -48,6 +48,6 @@ clim new backup
 clim run backup
 ```
 
-```
+```bash
 npm install -g cli macro
 ```
