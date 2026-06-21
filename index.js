@@ -151,7 +151,7 @@ if (command === "new" || command === "n") {
     }
     fs.unlinkSync(filepath);
     console.log(`${path.basename(filepath)} was deleted`);
-} else if (command === "list" || command === "ls") {
+} else if (command === "list" || command === "l") {
     // 파일 목록 보기 기능 (.clim 파일만)
     const files = fs.readdirSync(dataDir).filter(file => {
         const fullPath = path.join(dataDir, file);
