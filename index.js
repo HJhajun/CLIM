@@ -36,6 +36,7 @@ if (command === "new" || command === "n") {
         console.error("Filename required for new command.");
         process.exit(1);
     }
+    console.log("\n");
     const lines = [];
     while (true) {
         const index = lines.length + 1;
@@ -83,28 +84,34 @@ if (command === "new" || command === "n") {
     const lines = fs.existsSync(filepath)
         ? fs.readFileSync(filepath, "utf-8").split(/\r?\n/)
         : [];
+    const original = lines.slice();
+    let modified = false;
 
     while (true) {
-        console.log(`\n=== ${path.basename(filepath)} ===`);
+        console.log("\n");
         if (lines.length === 0) {
             console.log("(empty file)");
         } else {
             lines.forEach((line, index) => {
-                console.log(`${index + 1}: ${line}`);
+                const padding = " ".repeat(6 - String(index + 1).length);
+                console.log(`${padding}${index + 1}| ${line}`);
             });
         }
 
+        console.log("\n");
         const action = prompt("[a]ppend [r]eplace [d]elete [s]ave [q]uit > ").trim().toLowerCase();
         if (action === "a") {
             const newLine = prompt("Append line: ");
             if (newLine !== "") {
                 lines.push(newLine);
+                modified = true;
             }
         } else if (action === "r") {
             const lineNumber = Number(prompt("Replace line number: "));
             if (Number.isInteger(lineNumber) && lineNumber >= 1 && lineNumber <= lines.length) {
                 const newText = prompt("New text: ");
                 lines[lineNumber - 1] = newText;
+                modified = true;
             } else {
                 console.log("Please enter a valid line number.");
             }
@@ -112,15 +119,20 @@ if (command === "new" || command === "n") {
             const lineNumber = Number(prompt("Delete line number: "));
             if (Number.isInteger(lineNumber) && lineNumber >= 1 && lineNumber <= lines.length) {
                 lines.splice(lineNumber - 1, 1);
+                modified = true;
             } else {
                 console.log("Please enter a valid line number.");
             }
         } else if (action === "s") {
             fs.writeFileSync(filepath, lines.join("\n"));
             console.log(`${path.basename(filepath)} was saved`);
+            modified = false;
             break;
         } else if (action === "q") {
-            console.log("Edit cancelled.");
+            // 무조건 저장하고 종료
+            fs.writeFileSync(filepath, lines.join("\n"));
+            console.log(`${path.basename(filepath)} was saved`);
+            modified = false;
             break;
         } else {
             console.log("Unknown command. Try again.");
