@@ -148,7 +148,7 @@ if (command === "new" || command === "n") {
     if (files.length === 0) {
         console.log("No .clim files found.");
     } else {
-        files.forEach(file => console.log(file));
+        files.forEach(file => console.log(path.basename(file, ".clim")));
     }
 } else {
     console.error(`Unknown command: ${command}`);
