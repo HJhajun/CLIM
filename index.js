@@ -10,15 +10,18 @@ const argv = process.argv;
 const command = argv[2];
 let filename = argv[3];
 
-// 홈 디렉토리 경로
-const homeDir = os.homedir();
+// 홈 디렉토리 아래 .clim 폴더 경로
+const dataDir = path.join(os.homedir(), ".clim");
+if (!fs.existsSync(dataDir)) {
+    fs.mkdirSync(dataDir, { recursive: true });
+}
 
 // 파일명에 .clim 확장자 추가/처리
 function getClimFilePath(name) {
     if (!name.endsWith(".clim")) {
         name = name + ".clim";
     }
-    return path.join(homeDir, name);
+    return path.join(dataDir, name);
 }
 
 // 기본 사용법 안내
@@ -138,8 +141,8 @@ if (command === "new" || command === "n") {
     console.log(`${path.basename(filepath)} was deleted`);
 } else if (command === "list" || command === "ls") {
     // 파일 목록 보기 기능 (.clim 파일만)
-    const files = fs.readdirSync(homeDir).filter(file => {
-        const fullPath = path.join(homeDir, file);
+    const files = fs.readdirSync(dataDir).filter(file => {
+        const fullPath = path.join(dataDir, file);
         return fs.statSync(fullPath).isFile() && file.endsWith(".clim");
     });
     if (files.length === 0) {
