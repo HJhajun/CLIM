@@ -6,8 +6,6 @@ CLI Macro
 npm install -g cli-macro
 ```
 
----
-
 ## 사용법
 새 매크로 파일 생성:
 ```bash
