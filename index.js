@@ -26,7 +26,8 @@ function getClimFilePath(name) {
 
 // 기본 사용법 안내
 if (!command) {
-    console.log("Usage: clim <new|n|run|r|edit|e|delete|d|list|l> [filename]");
+    console.log("Usage: clim <new|run|edit|delete|list> [filename]");
+    console.log("Short: clim <n|r|e|d|l> [filename]");
     process.exit(1);
 }
 
